@@ -1,0 +1,27 @@
+```mermaid
+flowchart TD
+    subgraph Users
+        U1[user-1]
+        U2[user-2]
+        U3[user-3]
+    end
+
+    subgraph Groups
+        G1[S3-Support\n(ReadOnly S3)]
+        G2[EC2-Support\n(ReadOnly EC2)]
+        G3[EC2-Admin\n(EC2 Start/Stop/View)]
+    end
+
+    subgraph Services
+        S3[(Amazon S3)]
+        EC2[(Amazon EC2)]
+    end
+
+    U1 --> G1
+    U2 --> G2
+    U3 --> G3
+
+    G1 --> S3
+    G2 --> EC2
+    G3 --> EC2
+```
