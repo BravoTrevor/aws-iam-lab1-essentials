@@ -161,7 +161,7 @@ aws-iam-lab1-essentials/
 # 👨‍💻 Author
 **Bravo Trevor**  
 GitHub: https://github.com/BravoTrevor  
-Portfolio: *(your portfolio link)*  
+Portfolio: https://bravotrevor.github.io/personal-portfolio/  
 
 ---
 
