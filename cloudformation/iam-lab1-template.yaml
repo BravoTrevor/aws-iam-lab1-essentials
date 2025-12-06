@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: IAM Lab 1 – Users, Groups, and Policies
+
+Resources:
+
+  S3SupportGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: S3-Support
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+  EC2SupportGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: EC2-Support
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+
+  EC2AdminGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: EC2-Admin
+
+  EC2AdminPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: EC2AdminBasic
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - ec2:DescribeInstances
+              - ec2:StartInstances
+              - ec2:StopInstances
+            Resource: "*"
+      Groups:
+        - !Ref EC2AdminGroup
+
+  User1:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: user-1
+      Groups:
+        - !Ref S3SupportGroup
+
+  User2:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: user-2
+      Groups:
+        - !Ref EC2SupportGroup
+
+  User3:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: user-3
+      Groups:
+        - !Ref EC2AdminGroup
